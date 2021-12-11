@@ -18,9 +18,6 @@ def about():
 def login():
     return render_template("login.html")
 
-@app.route("/<usr>")
-def user(usr):
-    return f"<h1>{usr}</h>"
 
 #prediction
 @app.route('/prediction')
