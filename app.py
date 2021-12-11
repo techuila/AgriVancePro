@@ -8,7 +8,8 @@ from wtforms.validators import InputRequired, Length, ValidationError
 
 app=Flask(__name__)
 db= SQLAlchemy(app)
-app.config['SQLACHEMY_DATABASE_URI']= 'sqlite://database.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLACHEMY_DATABASE_URI']= 'sqlite:///database.db'
 app.config['SECRET_KEY']= 'swertekapagnahulaanmo'
 
 class User(db.Model, UserMixin):
@@ -17,32 +18,32 @@ class User(db.Model, UserMixin):
       password = db.Column(db.String(80), primary_key=True)
 
 class RegisterForm(FlaskForm):
-      username= StringField(validators=[InputRequired(),Length(min=4, max=20)], render_kw={"placeholder": "Username"})
-      passwod= StringField(validators=[InputRequired(),Length(min=4, max=20)], render_kw={"placeholder": "Password"})
-      submit =SubmitField ("Register")
+       username= StringField(validators=[InputRequired(),Length(min=4, max=20)], render_kw={"placeholder": "Username"})
+       passwod= StringField(validators=[InputRequired(),Length(min=4, max=20)], render_kw={"placeholder": "Password"})
+       submit =SubmitField ("Register")
 
-      def validate_username(self,username):
-            existing_user_username = User.query.filter_by(username=username.data).first()
+       def validate_username(self,username):
+             existing_user_username = User.query.filter_by(username=username.data).first()
 
-            if existing_user_username:
-                  raise ValidationError("Username Already exists! Please Try Again.")
+             if existing_user_username:
+                   raise ValidationError("Username Already exists! Please Try Again.")
 
 class LoginForm(FlaskForm):
-      username= StringField(validators=[InputRequired(),Length(min=4, max=20)], render_kw={"placeholder": "Username"})
-      passwod= StringField(validators=[InputRequired(),Length(min=4, max=20)], render_kw={"placeholder": "Password"})
-      submit =SubmitField ("Login")
+       username= StringField(validators=[InputRequired(),Length(min=4, max=20)], render_kw={"placeholder": "Username"})
+       passwod= StringField(validators=[InputRequired(),Length(min=4, max=20)], render_kw={"placeholder": "Password"})
+       submit =SubmitField ("Login")
 
-@app.route('/home')
+@app.route('/')
 def home():
   return render_template('home.html')
 
-@app.route('/login', method=['GET','POST'])
+@app.route('/login', methods=['GET','POST'])
 def login():
-  return render_template('login.html')
+  return render_template('login.html' , form=form)
 
-@app.route('/register', method=['GET','POST'])
+@app.route('/register',methods=['GET','POST'])
 def register():
-  return render_template('register.html')
+  return render_template('register.html', form=form)
 
 if __name__ == '__main__':
   app.run(debug=True)
