@@ -16,7 +16,7 @@ def about():
 #login
 @app.route("/login", methods=["POST","GET"])
 def login():
-    return render_template("login")
+    return render_template("login.html")
 
 @app.route("/<usr>")
 def user(usr):
