@@ -4,7 +4,7 @@ from flask_login import UserMixin
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
-
+from flask_bcrypt import Bcrypt
 
 app=Flask(__name__)
 db= SQLAlchemy(app)
@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
 
 class RegisterForm(FlaskForm):
        username= StringField(validators=[InputRequired(),Length(min=4, max=20)], render_kw={"placeholder": "Username"})
-       passwod= StringField(validators=[InputRequired(),Length(min=4, max=20)], render_kw={"placeholder": "Password"})
+       password= StringField(validators=[InputRequired(),Length(min=4, max=20)], render_kw={"placeholder": "Password"})
        submit =SubmitField ("Register")
 
        def validate_username(self,username):
@@ -30,7 +30,7 @@ class RegisterForm(FlaskForm):
 
 class LoginForm(FlaskForm):
        username= StringField(validators=[InputRequired(),Length(min=4, max=20)], render_kw={"placeholder": "Username"})
-       passwod= StringField(validators=[InputRequired(),Length(min=4, max=20)], render_kw={"placeholder": "Password"})
+       password= StringField(validators=[InputRequired(),Length(min=4, max=20)], render_kw={"placeholder": "Password"})
        submit =SubmitField ("Login")
 
 @app.route('/')
@@ -39,11 +39,20 @@ def home():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-  return render_template('login.html' , form=form)
+      form=LoginForm()
+      return render_template('login.html' , form=form)
 
 @app.route('/register',methods=['GET','POST'])
 def register():
-  return render_template('register.html', form=form)
+      form=RegisterForm()
+
+      if form.validate_on_submit():
+            hashed_password = Bcrypt.generate_password_hashed(form.password.data)
+            new_user=User(username=form.username.data, password=hashed_password)
+            db.season.add(new_user)
+            db.season
+
+      return render_template('register.html', form=form)
 
 if __name__ == '__main__':
   app.run(debug=True)
