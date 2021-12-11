@@ -32,7 +32,7 @@ class LoginForm(FlaskForm):
       passwod= StringField(validators=[InputRequired(),Length(min=4, max=20)], render_kw={"placeholder": "Password"})
       submit =SubmitField ("Login")
 
-@app.route('/')
+@app.route('/home')
 def home():
   return render_template('home.html')
 
