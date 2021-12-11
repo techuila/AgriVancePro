@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from flask_wtf import FlaskForm
@@ -50,7 +50,8 @@ def register():
             hashed_password = Bcrypt.generate_password_hashed(form.password.data)
             new_user=User(username=form.username.data, password=hashed_password)
             db.season.add(new_user)
-            db.season
+            db.season.commit()
+            return redirect(url_for('login'))
 
       return render_template('register.html', form=form)
 
