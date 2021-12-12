@@ -38,6 +38,10 @@ def index():
 def prediction():
     return render_template('prediction.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 @app.route('/profile')
 @login_required
 def profile():
