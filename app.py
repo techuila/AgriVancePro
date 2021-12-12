@@ -10,9 +10,10 @@ app.config['SECRET_KEY'] = 'swertemopagnahulaanmo'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['CSRF_ENABLED'] = True 
 app.config['USER_ENABLE_EMAIL'] = True 
-app.config['USER_APP_NAME'] = 'AgriVance_Pro'
+app.config['USER_APP_NAME'] = 'AgriVance Pro'
 app.config['USER_AFTER_REGISTER_ENDPOINT'] = 'user.login'
 app.config.from_pyfile('config.cfg')
+
 
 db = SQLAlchemy(app)
 mail = Mail(app)
@@ -35,7 +36,7 @@ def index():
 @app.route('/profile')
 @login_required
 def profile():
-    return '<h1>This is the protected profile page!</h1>'
+    return render_template('profile.html')
 
 if __name__ == '__main__':
     app.run(debug=True) 
