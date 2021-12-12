@@ -1525,7 +1525,7 @@ input[type="radio"] .styled:checked+label::after {
 
 
 .location_icon_bottum_tt {
-width: 100%;
+width: 50%;
 }
 
 .location_icon_bottum_tt ul li {
