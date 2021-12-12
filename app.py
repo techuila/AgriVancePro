@@ -12,6 +12,7 @@ app.config['CSRF_ENABLED'] = True
 app.config['USER_ENABLE_EMAIL'] = True 
 app.config['USER_APP_NAME'] = 'AgriVance Pro'
 app.config['USER_AFTER_REGISTER_ENDPOINT'] = 'user.login'
+
 app.config.from_pyfile('config.cfg')
 
 
