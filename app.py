@@ -33,6 +33,11 @@ user_manager = UserManager(app, db, User)
 def index():
     return render_template('index.html')
 
+@app.route('/prediction')
+@login_required
+def prediction():
+    return render_template('prediction.html')
+
 @app.route('/profile')
 @login_required
 def profile():
