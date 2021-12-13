@@ -1543,27 +1543,17 @@ font-weight: 500;
    
     position: relative;
     z-index: 999;
-    background: #070606;
-    margin-left: 450px;
+    background: #229c03;
+    margin-left: 300px;
     top: 0;
     margin-bottom: -35px;
 
      }
-.location_icon_bottum::before {
-     position: absolute;
-content: "";
-top: 0px;
-background: url(../icon/wfe4.png);
-background-repeat: repeat;
-width: 40px;
-height: 67px;
-background-repeat: no-repeat;
-left: -35px;
-}
+
 .location_icon_bottum ul li {
      display: inline-block;
 padding: 0px 5px;
-color: rgb(255, 250, 250);
+color: rgb(12, 10, 10);
 font-size: 15px;
 font-weight: 500;
 }

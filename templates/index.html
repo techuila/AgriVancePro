@@ -51,7 +51,7 @@
                     </div> 
                 </div>
                 <div class="row">
-                    <div class="col-md-8 location_icon_bottum">
+                    <div class="col-md-10 location_icon_bottum">
                        <div class="row">
                             <div class="col-md-12">
                                 <div class="menu-area">
@@ -63,7 +63,13 @@
                                                 <li><a href="#about">About</a></li>
                                                 <li><a href="#contact">Contact Us</a></li>
                                                 <li><a href="prediction">Prediction</a></li>
-                                                <li><a href="profile">Profile</a></li>
+                                            {% if call_or_get(current_user.is_authenticated) %}
+                                                <a href="profile">{{ current_user.username  }}</a>
+                                                &nbsp; | &nbsp;
+                                                <a href="{{ url_for('user.logout') }}">{%trans%}Sign out{%endtrans%}</a>
+                                            {% else %}
+                                                <a href="{{ url_for('user.login') }}">{%trans%}Sign in{%endtrans%}</a>
+                                            {% endif %}
 
                                             </ul>
                                         </nav>
