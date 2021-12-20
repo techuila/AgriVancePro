@@ -47,7 +47,7 @@ def predict():
 
     output = round(prediction[0], 2)
 
-    return render_template('index.html', prediction_text='Yield Predicted {} kg/ha'.format(output))
+    return render_template('prediction.html', prediction_text='Yield Predicted {} kg/ha'.format(output))
 
 @app.route('/results',methods=['POST'])
 def results():
