@@ -1,10 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,jsonify, render_template, request
 from flask.templating import render_template_string
 from flask_sqlalchemy import SQLAlchemy 
 from flask_user import login_required, UserManager, UserMixin
 from flask_mail import Mail 
 import numpy as np
-from flask import Flask, request, jsonify, render_template
 import pickle
 
 app = Flask(__name__)
@@ -38,25 +37,13 @@ user_manager = UserManager(app, db, User)
 def index():
     return render_template('index.html')
 
-@app.route('/predict', methods=['POST'])
+@app.route('/prediction')
 @login_required
-def predict():
-    int_features = [int(x) for x in request.form.values()]
-    final_features = [np.array(int_features)]
-    prediction = model.predict(final_features)
+def prediction():
+    return render_template('prediction.html')
 
-    output = round(prediction[0], 2)
 
-    return render_template('prediction.html', prediction_text='Yield Predicted {} kg/ha'.format(output))
 
-@app.route('/results',methods=['POST'])
-def results():
-
-    data = request.get_json(force=True)
-    prediction = model.predict([np.array(list(data.values()))])
-
-    output = prediction[0]
-    return jsonify(output)
 
 @app.route('/about')
 def about():
