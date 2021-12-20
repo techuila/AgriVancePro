@@ -1812,7 +1812,7 @@ border-radius: 18px;
 .offer .offer-bg .offer_box {text-align: center;}
 .offer .offer-bg .offer_box figure {margin: 0;}
 .offer .offer-bg .offer_box figure img {
-    width: 100%;
+    width: 50%;
 }
 .offer .offer-bg .offer_box h3 {
      font-size: 30px;
