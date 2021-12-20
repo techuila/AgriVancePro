@@ -38,9 +38,9 @@ user_manager = UserManager(app, db, User)
 def index():
     return render_template('index.html')
 
-@app.route('/predict')
+@app.route('/predict', methods=['POST'])
 @login_required
-def prediction():
+def predict():
     int_features = [int(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
