@@ -1,2 +1,508 @@
-<h2> Insert prediction here</h2>
- <a href="/">Home</a>
+{% extends "base_layout.html" %} {% include "header.html" %} {% block content %}
+<style>
+  .datepicker {
+    z-index: 99999 !important;
+    padding: 12px;
+  }
+  .input-group-append {
+    cursor: pointer;
+  }
+  #rice-calendar,
+  #rice-calendar th,
+  #rice-calendar td {
+    padding: 0;
+    text-align: center;
+    border: 1px solid gray;
+    border-collapse: collapse;
+  }
+  #rice-calendar th {
+    padding: 0 12px;
+  }
+  #rice-calendar .c {
+    padding: 0;
+    display: flex;
+    color: transparent;
+  }
+  #rice-calendar .c > div {
+    flex-grow: 1;
+  }
+  #rice-calendar .box {
+    width: 15px;
+    height: 15px;
+    border-radius: 4px;
+    margin-bottom: -2.5px;
+  }
+  #rice-calendar .d-h {
+    background-color: yellowgreen;
+  }
+  #rice-calendar .d-t {
+    background-color: chocolate;
+  }
+  #rice-calendar .w-h {
+    background-color: cornflowerblue ;
+  }
+  #rice-calendar .w-t {
+    background-color: lightpink;
+  }
+</style>
+<div class="container mt-5">
+	<div class="row justify-content-md-center">
+		<div class="col-4">
+			<h1>Prediction</h1>
+			<form id="prediction-form" name="form">
+				<div class="form-group">
+					<div class="mb-3">
+						<label for="date_plot" class="form-label">Seed Date <small class="text-muted">(YYYY-MM)</small></label>
+						<input
+							type="text"
+							class="form-control"
+							name="date_plot"
+              id="datepicker"
+							required
+						/>
+					</div>
+					<div class="mb-3">
+						<label for="seed_variety" class="form-label">Type of Seed <small class="text-muted">(NSIC RC)</small></label>
+						<select class="form-control" name="seed_variety" required>
+              <option value="1">NSIC RC 222</option>
+              <option value="2">NSIC RC 192</option>
+              <option value="3">NSIC RC 11</option>
+              <option value="4">NSIC RC 120</option>
+              <option value="5">NSIC RC 396</option>
+              <option value="6">NSIC RC 350</option>
+              <option value="7">NSIC RC 410</option>
+              <option value="8">NSIC RC 100</option>
+              <option value="9">NSIC RC 102</option>
+              <option value="10">NSIC RC 242</option>
+              <option value="11">NSIC RC 56</option>
+              <option value="12">NSIC RC 12</option>
+              <option value="13">NSIC RC 42</option>
+              <option value="14">NSIC RC 442</option>
+              <option value="15">NSIC RC 510</option>
+            </select>
+					</div>
+					<div class="mb-3">
+						<label for="land_area" class="form-label">Land Area <small class="text-muted">(ha)</small></label>
+						<input
+							type="number"
+              step=".01"
+							class="form-control"
+							name="land_area"
+							required
+						/>
+					</div>
+					<div class="mb-3">
+						<label for="seed_quantity" class="form-label">Seed Quantity <small class="text-muted">(klg/ha)</small></label>
+						<input
+							type="number"
+              step=".01"
+							class="form-control"
+							name="seed_quantity"
+							required
+						/>
+					</div>
+					<div class="mb-3">
+						<label for="rainfall" class="form-label">Rainfall <small class="text-muted">(mm)</small></label>
+						<input
+							type="number"
+              step=".01"
+							class="form-control"
+							name="rainfall"
+							required
+						/>
+					</div>
+					<div class="mb-3">
+						<label for="maximum_temp" class="form-label"
+							>Maximum Temperature <small class="text-muted">(°C)</small></label
+						>
+						<input
+							type="number"
+              step=".01"
+							class="form-control"
+							name="maximum_temp"
+							required
+						/>
+					</div>
+					<div class="mb-3">
+						<label for="humidity" class="form-label">Humidity <small class="text-muted">(%)</small></label>
+						<input
+							type="number"
+              step=".01"
+							class="form-control"
+							name="humidity"
+							required
+						/>
+					</div>
+
+					<button id="submit-btn" type="submit" class="w-100 btn btn-primary">
+						Submit
+					</button>
+
+					<button
+						id="loading-btn"
+						class="w-100 btn btn-primary d-none"
+						type="button"
+						disabled
+					>
+						<span
+							class="spinner-border spinner-border-sm"
+							role="status"
+							aria-hidden="true"
+						></span>
+						Loading...
+					</button>
+					<!-- Button trigger modal -->
+
+					<!-- Modal -->
+					<div
+						class="modal fade"
+						id="resultModal"
+						tabindex="-1"
+						aria-labelledby="resultModalLabel"
+            >
+						<!-- aria-hidden="true" -->
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="resultModalLabel">Result</h4>
+									<button
+										type="button"
+										class="btn-close"
+										data-bs-dismiss="modal"
+										aria-label="Close"
+									></button>
+								</div>
+								<div class="modal-body">
+                  <div class="w-100">
+                    <div class="d-flex justify-content-between">
+                      <div class="flex-grow-1">
+                        <b>Type of Seed:</b> <span id="seed_variety"></span></br>
+                        <b>Land Area:</b> <span id="land_area"></span> ha </br>
+                        <b>Seed Quantity:</b> <span id="seed_quantity"></span> klg/ha </br>
+                        <hr>
+                        <b class="d-inline-block">Total Yield <small class="text-muted">(approx.)</small>: </b> <h4 id="yield" class="d-inline-block">  </h4> klg/ha
+                      </div>
+                      <div class="flex-grow-1">
+                        <b>Rainfall:</b> <span id="rainfall"></span> mm </br>
+                        <b>Maximum Temperature:</b> <span id="maximum_temp"></span> °C </br>
+                        <b>Humidity:</b> <span id="humidity"></span>% 
+                        <hr>
+                        <b>Month of Harvest:</b> <span id="date_plot"></span>
+                      </div>
+                    </div>
+                    <div>
+                      <h3 class="text-center">Rice Cropping Calendar</h3>
+                      <i>Reference: <a class="text-primary" href="https://www.researchgate.net/figure/3-Rice-cropping-calendar-for-the-12-administrative-regions-in-the-Philippines_tbl36_40190507" target="_blank">Rice Cropping Calendar</a></i>
+                      <table id="rice-calendar">
+                        <thead class="table table-bordered" >
+                          <tr>
+                            <th scope="col"></th>
+                            <th scope="col" colspan="6"><center>Dry Season<br> <small>Harvest <div class="box d-h d-inline-block"></div> Transplanting <div<div class="box d-t d-inline-block"></div></small></center</th>
+                            <th scope="col" colspan="6"><center>Wet Season<br> <small>Harvest <div class="box w-h d-inline-block"></div> Transplanting <div<div class="box w-t d-inline-block"></div></small></center</th>
+                          </tr>
+                          <tr>
+                            <th scope="col">Region</th>
+                            <th scope="col">Jan</th>
+                            <th scope="col">Feb</th>
+                            <th scope="col">Mar</th>
+                            <th scope="col">Apr</th>
+                            <th scope="col">May</th>
+                            <th scope="col">Jun</th>
+                            <th scope="col">Jul</th>
+                            <th scope="col">Aug</th>
+                            <th scope="col">Sept</th>
+                            <th scope="col">Oct</th>
+                            <th scope="col">Nov</th>
+                            <th scope="col">Dec</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td scope="row">I</td>
+                            <td class="d-t"></td>
+                            <td class="d-t"></td>
+                            <td></td>
+                            <td class="d-h"></td>
+                            <td class="d-h"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td></td>
+                            <td></td>
+                            <td class="w-h"></td>
+                            <td class="w-h"></td>
+                          </tr>
+                          <tr>
+                            <td scope="row">II</td>
+                            <td class="d-t"></td>
+                            <td class="d-t"></td>
+                            <td></td>
+                            <td class="d-h"></td>
+                            <td class="d-h"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td></td>
+                            <td></td>
+                            <td class="w-h"></td>
+                            <td class="w-h"></td>
+                          </tr>
+                          <tr>
+                            <td scope="row">III</td>
+                            <td class="d-t"></td>
+                            <td class="d-t"></td>
+                            <td></td>
+                            <td class="d-h"></td>
+                            <td class="d-h"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td></td>
+                            <td></td>
+                            <td class="w-h"></td>
+                            <td class="w-h"></td>
+                          </tr>
+                          <tr>
+                            <td scope="row">IV</td>
+                            <td class="d-t"></td>
+                            <td></td>
+                            <td></td>
+                            <td class="d-h"></td>
+                            <td class="d-h"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td></td>
+                            <td class="w-h"></td>
+                            <td class="w-h"></td>
+                            <td><div class="c"><div class="d-inline-block w-h">.</div><div class="d-inline-block d-t">.</div></div></td>
+                          </tr>
+                          <tr>
+                            <td scope="row">V</td>
+                            <td class="d-t"></td>
+                            <td></td>
+                            <td></td>
+                            <td class="d-h"></td>
+                            <td class="d-h"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td></td>
+                            <td class="w-h"></td>
+                            <td class="w-h"></td>
+                            <td><div class="c"><div class="d-inline-block w-h">.</div><div class="d-inline-block d-t">.</div></div></td>
+                          </tr>
+                          <tr>
+                            <td scope="row">VI</td>
+                            <td></td>
+                            <td></td>
+                            <td class="d-h"></td>
+                            <td class="d-h"></td>
+                            <td><div class="c"><div class="d-inline-block d-h">.</div><div class="d-inline-block w-t">.</div></div></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td></td>
+                            <td class="w-h"></td>
+                            <td><div class="c"><div class="d-inline-block w-h">.</div><div class="d-inline-block d-t">.</div></div></td>
+                            <td><div class="c"><div class="d-inline-block w-h">.</div><div class="d-inline-block d-t">.</div></div></td>
+                          </tr>
+                          <tr>
+                            <td scope="row">VII</td>
+                            <td></td>
+                            <td></td>
+                            <td class="d-h"></td>
+                            <td class="d-h"></td>
+                            <td><div class="c"><div class="d-inline-block d-h">.</div><div class="d-inline-block w-t">.</div></div></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td></td>
+                            <td class="w-h"></td>
+                            <td><div class="c"><div class="d-inline-block w-h">.</div><div class="d-inline-block d-t">.</div></div></td>
+                            <td><div class="c"><div class="d-inline-block w-h">.</div><div class="d-inline-block d-t">.</div></div></td>
+                          </tr>
+                          <tr>
+                            <td scope="row">VIII</td>
+                            <td class="d-h"></td>
+                            <td class="d-h"></td>
+                            <td class="d-h"></td>
+                            <td></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td class="w-h"></td>
+                            <td><div class="c"><div class="d-inline-block w-h">.</div><div class="d-inline-block d-t">.</div></div></td>
+                            <td><div class="c"><div class="d-inline-block w-h">.</div><div class="d-inline-block d-t">.</div></div></td>
+                            <td><div class="c"><div class="d-inline-block w-h">.</div><div class="d-inline-block d-t">.</div></div></td>
+                          </tr>
+                          <tr>
+                            <td scope="row">IX</td>
+                            <td class="d-h"></td>
+                            <td class="d-h"></td>
+                            <td class="d-h"></td>
+                            <td></td>
+                            <td></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td class="d-t"></td>
+                            <td><div class="c"><div class="d-inline-block d-t">.</div><div class="d-inline-block w-h">.</div></div></td>
+                            <td class="w-h"></td>
+                            <td class="w-h"></td>
+                          </tr>
+                          <tr>
+                            <td scope="row">X</td>
+                            <td><div class="c"><div class="d-inline-block w-h">.</div><div class="d-inline-block d-t">.</div></div></td>
+                            <td class="d-t"></td>
+                            <td></td>
+                            <td class="d-h"></td>
+                            <td class="d-h"></td>
+                            <td><div class="c"><div class="d-inline-block d-h">.</div><div class="d-inline-block w-t">.</div></div></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td></td>
+                            <td></td>
+                            <td class="w-h"></td>
+                            <td><div class="c"><div class="d-inline-block w-h">.</div><div class="d-inline-block d-t">.</div></div></td>
+                          </tr>
+                          <tr>
+                            <td scope="row">XI</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="d-h"></td>
+                            <td><div class="c"><div class="d-inline-block d-h">.</div><div class="d-inline-block w-t">.</div></div></td>
+                            <td><div class="c"><div class="d-inline-block d-h">.</div><div class="d-inline-block w-t">.</div></div></td>
+                            <td class="w-t"></td>
+                            <td></td>
+                            <td class="w-h"></td>
+                            <td class="w-h"></td>
+                            <td><div class="c"><div class="d-inline-block w-h">.</div><div class="d-inline-block d-t">.</div></div></td>
+                            <td class="d-t"></td>
+                          </tr>
+                          <tr>
+                            <td scope="row">XII</td>
+                            <td><div class="c"><div class="d-inline-block w-h">.</div><div class="d-inline-block d-t">.</div></div></td>
+                            <td class="d-t"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="d-h"></td>
+                            <td class="d-h"></td>
+                            <td class="w-t"></td>
+                            <td class="w-t"></td>
+                            <td></td>
+                            <td></td>
+                            <td class="w-h"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+  const seedVariety = [
+  	'NSIC RC 222',
+  	'NSIC RC 192',
+  	'NSIC RC 11',
+  	'NSIC RC 120',
+  	'NSIC RC 396',
+  	'NSIC RC 350',
+  	'NSIC RC 410',
+  	'NSIC RC 100',
+  	'NSIC RC 102',
+  	'NSIC RC 242',
+  	'NSIC RC 56',
+  	'NSIC RC 12',
+  	'NSIC RC 42',
+  	'NSIC RC 442',
+  	'NSIC RC 510'
+  ];
+
+	$(document).ready(function () {
+		document.title = 'AgriVance Pro | Prediction';
+    $('#datepicker').datepicker({
+      format: "yyyy-mm",
+      viewMode: "months", 
+      minViewMode: "months"
+    });
+	});
+
+	$('form').on('submit', function (event) {
+		try {
+			// Prevent form from submitting
+			event.preventDefault();
+
+			toggleLoader();
+
+			const formData = new FormData(document.forms.namedItem('form'));
+      const { seed_variety, ...rest } = Object.fromEntries(formData)
+      const seed = seedVariety.reduce((a, seed, index) => a={...a, [seed.split(' ').join('_')]: (index == parseInt(seed_variety) - 1 ? '1' : '0')}, {})
+      const content =  JSON.stringify({...rest, ...seed, seed_variety})
+
+			// Submit payload to /predict API, that returns the predicted yield value
+			$.ajax({
+				type: 'POST',
+				url: '/predict',
+				contentType: 'application/json',
+				data: content,
+				success: function (data, test, testing) {
+					// If user is unaothorized / session is expired => redirect to login
+					if (data.redirect) {
+						window.location.href = data.redirect;
+					} else {
+            const _data = {...JSON.parse(content), yield: data.data}
+						$('#resultModal').modal('show');
+            populateResult(_data)
+						$('#prediction-form').trigger('reset');
+					}
+				},
+				error: function (request, status, error) {
+					console.error(error);
+				},
+				complete: function () {
+					toggleLoader();
+				}
+			});
+		} catch (error) {
+			console.error(error);
+			// Remove loader if encountered a runtime error
+			if ($('#submit-btn').hasClass('d-none')) {
+				toggleLoader();
+			}
+		}
+	});
+
+  function populateResult(data) { 
+    const {date_plot, seed_variety, ...rest} = data
+    const date = new Date(date_plot)
+    const harvest_year_month = new Date(date.setMonth(date.getMonth()+6))
+    const month = harvest_year_month.getMonth() + 1 // + 1 because month starts at 0
+    const year = harvest_year_month.getFullYear()
+
+    $('#date_plot').text(year + '-' + ('00'+month).slice(-2))
+    $('#seed_variety').text(seedVariety[seed_variety])
+    for (const [property, value] of Object.entries(rest)) {
+      $('#' + property).text(parseFloat(value).toLocaleString('en-US'))
+    }
+  }
+
+	function toggleLoader() {
+		// Hide submit button
+		$('#submit-btn').toggleClass('d-none');
+		// Show button loader
+		$('#loading-btn').toggleClass('d-none');
+	}
+</script>
+{% endblock %}

@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+flask-sqlalchemy = "*"
+flask-user = "==1.0.2.2"
+flask-mail = "==0.9.1"
+matplotlib = "==3.2.1"
+numpy = "==1.22.4"
+pandas = "==1.4.3"
+scikit-learn = "==1.1.2"
+email-validator = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
