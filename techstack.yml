@@ -1,0 +1,264 @@
+repo_name: techuila/AgriVancePro
+report_id: 78eae2a822b10c2fbe9f38eb1306660d
+repo_type: Public
+timestamp: '2023-11-15T06:28:39+00:00'
+requested_by: LuceroAngelMae
+provider: github
+branch: main
+detected_tools_count: 20
+tools:
+- name: CSS 3
+  description: The latest evolution of the Cascading Style Sheets language
+  website_url: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/6727/css.png
+  detection_source: Repo Metadata
+- name: JavaScript
+  description: Lightweight, interpreted, object-oriented language with first-class
+    functions
+  website_url: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1209/javascript.jpeg
+  detection_source: Repo Metadata
+- name: Jinja
+  description: Full featured template engine for Python
+  website_url: https://palletsprojects.com/p/jinja/
+  version: 3.1.2
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Templating Languages & Extensions
+  image_url: https://img.stackshare.io/service/2303/New_Project__20_.png
+  detection_source_url: Pipfile.lock
+  detection_source: requirements.txt
+  last_updated_by: Maria Angela Lucero
+  last_updated_on: 2022-09-26 09:50:03.000000000 Z
+- name: Python
+  description: A clear and powerful object-oriented programming language, comparable
+    to Perl, Ruby, Scheme, or Java.
+  website_url: https://www.python.org
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/993/pUBY5pVj.png
+  detection_source: Repo Metadata
+- name: Matplotlib
+  description: A plotting library for the Python programming language
+  website_url: http://matplotlib.org
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: Charting Libraries
+  image_url: https://img.stackshare.io/service/2993/2DZC4KaA_400x400.jpg
+  detection_source: requirements.txt
+  last_updated_by: Maria Angela Lucero
+  last_updated_on: 2022-09-26 09:50:03.000000000 Z
+- name: Protobuf
+  description: Google's data interchange format
+  website_url: https://developers.google.com/protocol-buffers/
+  version: 3.11.3
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Serialization Frameworks
+  image_url: https://img.stackshare.io/service/4393/ma2jqJKH_400x400.png
+  detection_source_url: requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: Maria Angela Lucero
+  last_updated_on: 2022-09-26 09:50:03.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source: Repo Metadata
+- name: PyPI
+  description: A repository of software for the Python programming language
+  website_url: https://pypi.org/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Hosted Package Repository
+  image_url: https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg
+  detection_source: requirements.txt
+  last_updated_by: Maria Angela Lucero
+  last_updated_on: 2022-09-26 09:50:03.000000000 Z
+- name: Pandoc
+  description: A universal document converter
+  website_url: https://pandoc.org/
+  open_source: true
+  hosted_saas: false
+  category: Assets and Media
+  sub_category: File Conversion
+  image_url: https://img.stackshare.io/service/2330/no-img-open-source.png
+  detection_source: requirements.txt
+  last_updated_by: Maria Angela Lucero
+  last_updated_on: 2022-09-26 09:50:03.000000000 Z
+- name: Pillow
+  description: Python Imaging Library
+  website_url: https://python-pillow.github.io/
+  open_source: true
+  hosted_saas: false
+  category: Assets and Media
+  sub_category: Image Processing and Management
+  image_url: https://img.stackshare.io/service/2375/default_1f67b0ca7416a9f52beb655f90b5602d5ef74b75.jpg
+  detection_source: requirements.txt
+  last_updated_by: Maria Angela Lucero
+  last_updated_on: 2022-09-26 09:50:03.000000000 Z
+- name: IPython
+  description: A command shell for interactive computing in multiple programming languages
+  website_url: http://ipython.org/index.html
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Shells
+  image_url: https://img.stackshare.io/service/4477/820a0bb9a44fe5a1d640993ab1e6fd84_400x400.png
+  detection_source: requirements.txt
+  last_updated_by: Maria Angela Lucero
+  last_updated_on: 2022-09-26 09:50:03.000000000 Z
+- name: Jupyter
+  description: Multi-language interactive computing environments.
+  website_url: http://jupyter.org
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Application Utilities
+  sub_category: Data Science Notebooks
+  image_url: https://img.stackshare.io/service/4190/fGBUdNf__400x400.jpg
+  detection_source: Repo Metadata
+- name: NumPy
+  description: Fundamental package for scientific computing with Python
+  website_url: http://www.numpy.org/
+  version: 1.22.4
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Data Science Tools
+  image_url: https://img.stackshare.io/service/2179/default_332f874a2edb2686f578aa6389313efcea1eec41.png
+  detection_source_url: Pipfile.lock
+  detection_source: requirements.txt
+  last_updated_by: Maria Angela Lucero
+  last_updated_on: 2022-09-26 09:50:03.000000000 Z
+- name: SciPy
+  description: Scientific Computing Tools for Python
+  website_url: http://www.scipy.org
+  version: 1.9.0
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Data Science Tools
+  image_url: https://img.stackshare.io/service/3303/scipyshiny_small.png
+  detection_source_url: Pipfile.lock
+  detection_source: requirements.txt
+  last_updated_by: Maria Angela Lucero
+  last_updated_on: 2022-09-26 09:50:03.000000000 Z
+- name: TensorFlow
+  description: Open Source Software Library for Machine Intelligence
+  website_url: https://www.tensorflow.org
+  version: 2.0.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Application Utilities
+  sub_category: Machine Learning Tools
+  image_url: https://img.stackshare.io/service/4717/FtFnqC38_400x400.png
+  detection_source_url: requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: Maria Angela Lucero
+  last_updated_on: 2022-09-26 09:50:03.000000000 Z
+- name: PyPDF2
+  description: PDF toolkit
+  package_url: https://pypi.org/PyPDF2
+  version: '1.23'
+  license: Other
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20065/default_bb49fb0188726b8922387d8bb6e9b2cd0c3c0ea9.png
+  detection_source_url: requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: Maria Angela Lucero
+  last_updated_on: 2022-09-26 09:50:03.000000000 Z
+  vulnerabilities:
+  - name: PyPDF2 quadratic runtime with malformed PDF missing xref marker
+    cve_id: CVE-2023-36810
+    cve_url: https://github.com/advisories/GHSA-jrm6-h9cq-8gqw
+    detected_date: Jul 1
+    severity: moderate
+    first_patched: 1.27.9
+  - name: Manipulated inline images can cause Infinite Loop in PyPDF2
+    cve_id: CVE-2022-24859
+    cve_url: https://github.com/advisories/GHSA-xcjx-m2pj-8g79
+    detected_date: Apr 27
+    severity: moderate
+    first_patched: 1.27.5
+- name: pandas
+  description: Powerful data structures for data analysis
+  package_url: https://pypi.org/pandas
+  version: 1.4.3
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19837/default_85689b353a3a9409328e253ea28d859d29151e0c.png
+  detection_source_url: Pipfile.lock
+  detection_source: Pipfile
+  last_updated_by: Maria Angela Lucero
+  last_updated_on: 2022-09-26 09:50:03.000000000 Z
+- name: scikit-learn
+  description: A set of python modules for machine learning and data mining
+  package_url: https://pypi.org/scikit-learn
+  version: 1.1.2
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19898/default_4343f8bba4f6051641ffca8b4fbe9b099402c84d.png
+  detection_source_url: Pipfile.lock
+  detection_source: Pipfile
+  last_updated_by: Maria Angela Lucero
+  last_updated_on: 2022-09-26 09:50:03.000000000 Z
+- name: wrapt
+  description: Module for decorators, wrappers and monkey patching
+  package_url: https://pypi.org/wrapt
+  version: 1.12.0
+  license: BSD-2-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19946/default_0b0a94e1bdf3e64deeccb23892ca2335bdc30e4f.png
+  detection_source_url: requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: Maria Angela Lucero
+  last_updated_on: 2022-09-26 09:50:03.000000000 Z
+- name: zipp
+  description: Backport of pathlib-compatible object wrapper for zip files
+  package_url: https://pypi.org/zipp
+  version: 3.8.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20247/default_47b8ee8db82e43d9eef35923435bd8cc855f3a1b.png
+  detection_source_url: Pipfile.lock
+  detection_source: requirements.txt
+  last_updated_by: Maria Angela Lucero
+  last_updated_on: 2022-09-26 09:50:03.000000000 Z
