@@ -1,7 +1,8 @@
 <!--
---- Readme.md Snippet without images Start ---
+&lt;--- Readme.md Snippet without images Start ---&gt;
 ## Tech Stack
 techuila/AgriVancePro is built on the following main stack:
+
 - [Python](https://www.python.org) – Languages
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
 - [NumPy](http://www.numpy.org/) – Data Science Tools
@@ -16,11 +17,13 @@ techuila/AgriVancePro is built on the following main stack:
 - [TensorFlow](https://www.tensorflow.org) – Machine Learning Tools
 
 Full tech stack [here](/techstack.md)
---- Readme.md Snippet without images End ---
 
---- Readme.md Snippet with images Start ---
+&lt;--- Readme.md Snippet without images End ---&gt;
+
+&lt;--- Readme.md Snippet with images Start ---&gt;
 ## Tech Stack
 techuila/AgriVancePro is built on the following main stack:
+
 - <img width='25' height='25' src='https://img.stackshare.io/service/993/pUBY5pVj.png' alt='Python'/> [Python](https://www.python.org) – Languages
 - <img width='25' height='25' src='https://img.stackshare.io/service/1209/javascript.jpeg' alt='JavaScript'/> [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
 - <img width='25' height='25' src='https://img.stackshare.io/service/2179/default_332f874a2edb2686f578aa6389313efcea1eec41.png' alt='NumPy'/> [NumPy](http://www.numpy.org/) – Data Science Tools
@@ -35,14 +38,15 @@ techuila/AgriVancePro is built on the following main stack:
 - <img width='25' height='25' src='https://img.stackshare.io/service/4717/FtFnqC38_400x400.png' alt='TensorFlow'/> [TensorFlow](https://www.tensorflow.org) – Machine Learning Tools
 
 Full tech stack [here](/techstack.md)
---- Readme.md Snippet with images End ---
+
+&lt;--- Readme.md Snippet with images End ---&gt;
 -->
 <div align="center">
 
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [techuila/AgriVancePro](https://github.com/techuila/AgriVancePro)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|20<br/>Tools used|11/15/23 <br/>Report generated|
+|20<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -198,13 +202,13 @@ Full tech stack [here](/techstack.md)
 
 |NAME|VERSION|LAST UPDATED|LAST UPDATED BY|LICENSE|VULNERABILITIES|
 |:------|:------|:------|:------|:------|:------|
-|[PyPDF2](https://pypi.org/PyPDF2)|v1.23|09/26/22|Maria Angela Lucero |Other|[CVE-2023-36810](https://github.com/advisories/GHSA-jrm6-h9cq-8gqw) (Moderate)<br/>[CVE-2022-24859](https://github.com/advisories/GHSA-xcjx-m2pj-8g79) (Moderate)|
-|[pandas](https://pypi.org/pandas)|v1.4.3|09/26/22|Maria Angela Lucero |BSD-3-Clause|N/A|
-|[scikit-learn](https://pypi.org/scikit-learn)|v1.1.2|09/26/22|Maria Angela Lucero |BSD-3-Clause|N/A|
-|[wrapt](https://pypi.org/wrapt)|v1.12.0|09/26/22|Maria Angela Lucero |BSD-2-Clause|N/A|
-|[zipp](https://pypi.org/zipp)|v3.8.1|09/26/22|Maria Angela Lucero |MIT|N/A|
+|[PyPDF2](https://pypi.org/project/PyPDF2)|v1.23|09/26/22|Maria Angela Lucero |Other|[CVE-2023-36810](https://github.com/advisories/GHSA-jrm6-h9cq-8gqw) (Moderate)<br/>[CVE-2022-24859](https://github.com/advisories/GHSA-xcjx-m2pj-8g79) (Moderate)|
+|[pandas](https://pypi.org/project/pandas)|v1.4.3|09/26/22|Maria Angela Lucero |BSD-3-Clause|N/A|
+|[scikit-learn](https://pypi.org/project/scikit-learn)|v1.1.2|09/26/22|Maria Angela Lucero |BSD-3-Clause|N/A|
+|[wrapt](https://pypi.org/project/wrapt)|v1.12.0|09/26/22|Maria Angela Lucero |BSD-2-Clause|N/A|
+|[zipp](https://pypi.org/project/zipp)|v3.8.1|09/26/22|Maria Angela Lucero |MIT|N/A|
 
 <br/>
 <div align='center'>
 
-Generated via [Stack File](https://github.com/apps/stack-file)
+Generated via [Stack File](https://github.com/marketplace/stack-file)
